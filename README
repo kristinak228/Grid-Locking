@@ -2,13 +2,8 @@ Kristina R. Kolibab
 Grid Lock Assignemnt
 README
 
-Within this zip file contain 2 GIF files which are my graphs from testing, 2 PDFs, one for my data from testing and one for my write up, my c file source code, and this README.
-
 My deadlock prevention strategy was to use a 2d array of locks, composed of either pthread mutexes or Windows HANDLEs, which I would use when locking the individual cells or the rows. 
 
 I also used single mutex locks to lock critical sections of code. This includes things like incrementing and decrementing the threads_left variable and locking places where my threads needed to obtain more than one lock at a time.
 
 In this way I could prevent deadlock by forcing threads not to hold onto one lock while waiting for another, this strategy worked to fix the deadlocking issue I ran into.
-
-The biggest challenge was realizing that, because the rows and columns were randomly generated, there were instances where a thread would try to switch the same cell. This was where I initially found myself hitting deadlock, although I quickly realized I needed to lock the section before and after this, as I mentioned above.
-
